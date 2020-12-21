@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>zsaidov/CyrToLatTranslitJS</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <style>
+    .container-fluid {
+      max-width: 960px;
+    }
+
+    .column {
+      margin-bottom: 20px;
+    }
+
+    .space-replacement {
+      margin-top: 20px;
+    }
+
+    #source,
+    #result {
+      height: 30vh;
+      min-height: 100px;
+    }
+
+    @media (max-width: 767px) {
+      .navbar-brand {
+        float: none;
+        padding-bottom: 0;
+      }
+
+      .navbar-text {
+        margin-top: 0;
+        padding: 0 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="navbar navbar-default navbar-static-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <div class="navbar-brand">
+          zsaidov/CyrToLatTranslitJS
+        </div>
+        <p class="navbar-text">
+          Simple javascript function for converting Cyrillic symbols to Translit
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="main container-fluid">
+    <div class="row">
+      <div class="column col-sm-6">
+        <textarea class="form-control" id="source" placeholder="Paste Cyrillic text here"></textarea>
+
+        <div class="space-replacement input-group">
+          <span class="input-group-addon">Presets</span>
+          <label class="btn btn-secondary">
+            <input type="radio" name="options" id="option-tj" value="tj" autocomplete="off" checked="checked"> Tojiki
+          </label>
+          <label class="btn btn-secondary">
+            <input type="radio" name="options" id="option-ru" value="ru" autocomplete="off"> Russian
+          </label>
+        </div>
+
+        <div class="space-replacement input-group">
+          <span class="input-group-addon">Space replacement</span>
+          <input type="text" class="form-control text-center" id="space-rep">
+        </div>
+      </div>
+      <div class="column col-sm-6">
+        <textarea class="form-control" id="result" readonly placeholder="Get converted text here"></textarea>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <a class="github-button" href="https://github.com/zsaidov" aria-label="Follow @zsaidov on GitHub">Follow
+        @zsaidov</a>
+
+      <a class="github-button" href="https://github.com/zsaidov/CyrToLatTranslitJS" data-icon="octicon-star"
+        aria-label="Star https://github.com/zsaidov/CyrToLatTranslitJS on GitHub">Star</a>
+
+      <a class="github-button" href="https://github.com/greybax/cyrillic-to-translit-js/fork"
+        data-icon="octicon-repo-forked" aria-label="Fork github.com/zsaidov/CyrToLatTranslitJS on GitHub">Fork</a>
+    </div>
+  </div>
+  <script src="bundle.js"></script>
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  <script>
+    var element = document.querySelector('#source');
+    var $spaceRep = document.querySelector('#space-rep');
+    var $result = document.querySelector('#result');
+
+    var tj = document.querySelector('#option-tj');
+    var ru = document.querySelector('#option-ru');
+
+    var value;
+    var spaceRep;
+
+    element.addEventListener('input', function (e) {
+      update(value = e.target.value, spaceRep);
+    });
+
+    $spaceRep.addEventListener('input', function (e) {
+      update(value, spaceRep = e.target.value);
+    });
+
+    tj.addEventListener('click', function (e) {
+      update(value, spaceRep = $spaceRep.value);
+    });
+
+    ru.addEventListener('click', function (e) {
+      update(value, spaceRep = $spaceRep.value);
+    });
+
+    function update(value, spaceRep) {
+      if (tj.checked) {
+        $result.value = cyrToLatTranslit({ preset: 'tj' }).transform(value, spaceRep);
+      } else if (ru.checked) {
+        $result.value = cyrToLatTranslit({ preset: 'ru' }).transform(value, spaceRep);
+      }
+    }
+  </script>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#available-libraries -->
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyC-pnpg8SxeV9GLNk48epac6S3p6IY6Is8",
+      authDomain: "cyr-to-lat-js.firebaseapp.com",
+      projectId: "cyr-to-lat-js",
+      storageBucket: "cyr-to-lat-js.appspot.com",
+      messagingSenderId: "653742160898",
+      appId: "1:653742160898:web:98eb72fceb276f6adf7b1b"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
+</body>
+
+</html>
