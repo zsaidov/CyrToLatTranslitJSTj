@@ -1,7 +1,7 @@
 {
   "name": "cyrillic-to-translit-js",
   "version": "1.0.0",
-  "description": "Simple javascript function for converting Cyrillic symbols to Latin",
+  "description": "Simple javascript function for converting Cyrillic(Tj,Ru) symbols to Latin",
   "main": "CyrToLatTranslit",
   "typings": "CyrToLatTranslit",
   "scripts": {
@@ -41,7 +41,7 @@
   ],
   "author": "Zohid Saidov <zohidsaidi@gmail.com>",
   "contributors": [
-    "makepost <makepost@firemail.cc>"
+    "zsaidov <zohidsaidi@gmail.com>"
   ],
   "license": "MIT",
   "bugs": {
