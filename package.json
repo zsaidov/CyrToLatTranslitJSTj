@@ -1,5 +1,5 @@
 {
-  "name": "cyrillic-to-translit-js",
+  "name": "cyrillic-to-translit",
   "version": "1.0.0",
   "description": "Simple javascript function for converting Cyrillic(Tj,Ru) symbols to Latin",
   "main": "CyrToLatTranslit",
@@ -37,7 +37,9 @@
   "keywords": [
     "cyrToLatTranslit",
     "cyrillic",
-    "translit"
+    "translit",
+    "cyrillict to latin",
+    "cyrToLat"
   ],
   "author": "Zohid Saidov <zohidsaidi@gmail.com>",
   "contributors": [
@@ -49,6 +51,10 @@
   },
   "homepage": "https://github.com/zsaidov/CyrToLatTranslitJS",
   "dependencies": {
+    "cyrillic-to-translit": "^1.0.0",
     "lodash.invert": "^4.3.0"
+  },
+  "directories": {
+    "test": "test"
   }
 }
